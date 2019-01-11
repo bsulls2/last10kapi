@@ -1,0 +1,73 @@
+---
+title: "Last10k.com API"
+author: "Brendan Sullivan"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Last10k.com API}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(httr)
+library(XML)
+library(magrittr)
+
+```
+
+
+# API link and description
+
+For most financial statements that this package references, one function creates a data summary and another displays all corporate filing details which are more difficult to work with but useful for people who want to look through the filings in greater depth. Where data is available, functions will output either a data frame, list or text depending on which function is called. If data is not available, the function will return either an error or a blank data frame.
+
+* [Last10k.com Company API](https://dev.last10k.com/)
+* API description - "A collection of RESTful methods that returns various financial data for a requested company including balance sheets, stock quotes , company look-up utilities and more."
+* This API client creates functions to pull SEC-reported company data for:
+    + balance sheet
+    + cash flows
+    + cik lookup
+    + documentation and entity summary
+    + earnings per share
+    + equity
+    + fair value measurements
+    + financial ratios
+    + historical stock prices
+    + income
+    + liabilities
+    + operations
+    + stock quote
+* In order to use the API client, an API key is needed. This is easily obtained by [creating an account](https://dev.last10k.com/).
+
+
+# Function details
+    
+#### Names
+* `balance_sheet_data`, `balance_sheet_full`
+* `cash_flows_data`, `cash_flows_full`
+* `doc_entity_summary`
+* `cik_lookup`
+* `earnings_per_share_data`, `earnings_per_share_full`
+* `equity_data`, `equity_full`
+* `fair_value_data`, `fair_value_full`
+* `fin_ratios`
+* `historical_stock_prices`
+* `income_statement_data`, `income_statement_full`
+* `liabilities_data`, `liabilities_full`
+* `operations_data`, `operations_full`
+* `stock_quote`
+
+#### Example
+* Each function references an endpoint in the following format with parameters specified by the user https://services.last10k.com/v1/company/{ticker}/balancesheet[?formType][&filingOrder].
+* In this case we will use GE, 10-K, and 0 in the function balance_sheet_data: https://services.last10k.com/v1/company/GE/balancesheet?formType=10-K&filingOrder=0. Note that all function parameters must be entered in parentheses.
+    + `ticker` = GE
+    + `formType` - Annual (value = 10-K) or Quarterly (value = 10-Q)
+    + `filingOrder` - retrieve an older financial statement by specifying the number of filings to go back, starting with the most recent filing (value = 0). For example to get the filing before the most recent filing, specify a filingOrder number of 1. By default the most recent filing is returned (filingOrder = 0). 
+    + `balance_sheet_data("GE", "10-K", "0", "your_api_key")` returns a data frame of GE's most recent 10-K balance sheet. 
+    + `balance_sheet_full("GE", "10-K", "0", "your_api_key")` returns all of GE's balance sheet content verbatim from their most recent 10-K. 
+
+
