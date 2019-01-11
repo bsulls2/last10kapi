@@ -1,4 +1,4 @@
-* This API client creates functions to pull SEC-reported company data for:
+* This API client contains functions that pull SEC-reported company data for:
     + balance sheet
     + cash flows
     + cik lookup
