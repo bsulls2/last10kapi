@@ -1,15 +1,11 @@
-* This API client contains functions that pull SEC-reported company data for:
+* This API client pulls the following SEC-reported company 
+data:
+    + cash flow statement
     + balance sheet
-    + cash flows
-    + cik lookup
-    + documentation and entity summary
-    + earnings per share
-    + equity
-    + fair value measurements
+    + income statement
+    + equity statement
     + financial ratios
     + historical stock prices
-    + income
-    + liabilities
-    + operations
-    + stock quote
-* In order to use the API client, an API key is needed. This is easily obtained by [creating an account](https://dev.last10k.com/).
+* In order to use it, an API key is needed. This is obtained 
+by [creating an account](https://dev.last10k.com/) and 
+copying the key shown under Primary Key in your profile.

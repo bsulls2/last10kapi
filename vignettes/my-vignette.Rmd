@@ -23,43 +23,36 @@ library(magrittr)
 
 # API link and description
 
-For most financial statements that this package references, one function creates a data summary and another displays all corporate filing details which are more difficult to work with but useful for people who want to look through the filings in greater depth. Where data is available, functions will output either a data frame, list or text depending on which function is called. If data is not available, the function will return either an error or a blank data frame.
+Financial statements are output into data frames and from there are
+easy to manipulate and use in further analyses. A full suite of 
+financial ratios are also viewable for a given ticker. But as the
+variety and availability of these may vary by company, ratios are
+output into a list and can then be manipulated into a data frame
+depending on which ratios are desired.
 
 * [Last10k.com Company API](https://dev.last10k.com/)
 * API description - "A collection of RESTful methods that returns various financial data for a requested company including balance sheets, stock quotes , company look-up utilities and more."
-* This API client creates functions to pull SEC-reported company data for:
+* This API client pulls the following SEC-reported company data:
+    + cash flow statement
     + balance sheet
-    + cash flows
-    + cik lookup
-    + documentation and entity summary
-    + earnings per share
-    + equity
-    + fair value measurements
+    + income statement
+    + equity statement
     + financial ratios
     + historical stock prices
-    + income
-    + liabilities
-    + operations
-    + stock quote
-* In order to use the API client, an API key is needed. This is easily obtained by [creating an account](https://dev.last10k.com/).
+* In order to use it, an API key is needed. This is obtained by 
+[creating an account](https://dev.last10k.com/) and copying the key 
+shown under Primary Key in your profile.
 
 
 # Function details
     
 #### Names
-* `balance_sheet_data`, `balance_sheet_full`
-* `cash_flows_data`, `cash_flows_full`
-* `doc_entity_summary`
-* `cik_lookup`
-* `earnings_per_share_data`, `earnings_per_share_full`
-* `equity_data`, `equity_full`
-* `fair_value_data`, `fair_value_full`
+* `cash_flows_data`
+* `balance_sheet_data`
+* `income_statement_data`
+* `equity_data`
 * `fin_ratios`
 * `historical_stock_prices`
-* `income_statement_data`, `income_statement_full`
-* `liabilities_data`, `liabilities_full`
-* `operations_data`, `operations_full`
-* `stock_quote`
 
 #### Example
 * Each function references an endpoint in the following format with parameters specified by the user https://services.last10k.com/v1/company/{ticker}/balancesheet[?formType][&filingOrder].

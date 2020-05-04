@@ -12,8 +12,8 @@
 historical_stock_prices <- function(ticker, subscription_key) {
   url <- paste("https://services.last10k.com/v1/company", ticker, "prices", sep = "/")
   get_url <- GET(url, query = list(key = subscription_key))
-  hist_prices <- content(get_url, type = "application/json", as = "parsed") %>%
-    map_df(extract) %>%
+  data_url <- content(get_url, type = "application/json", as = "parsed")
+  hist_prices <- map_df(data_url$data$attributes$result, extract) %>%
     gather()
   return(hist_prices)
 }

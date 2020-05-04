@@ -12,13 +12,16 @@
 #' @export
 
 income_statement_data <- function(ticker, form_type, filing_order, subscription_key) {
-  url <- paste("https://services.last10k.com/v1/company", ticker, "income?formType=", sep = "/")
+  url <- paste("https://services.last10k.com/v1/company", ticker,
+               "income?formType=", sep = "/")
   url <- paste(url, form_type, sep = "")
   url <- paste(url, "&filingOrder=", filing_order, sep = "")
   get_url <- GET(url, query = list(key = subscription_key))
   data_url <- content(get_url, type = "application/json", as = "parsed")
-  inc <- map_df(data_url$Data, extract) %>%
-    mutate(company = data_url$Company, statement = data_url$Name, source = data_url$Source) %>%
+  inc <- map_df(data_url$data$attributes$result, extract) %>%
+    mutate(company = data_url$data$attributes$company$name,
+           statement = data_url$data$attributes$filing$name,
+           source = data_url$data$attributes$filing$source) %>%
     gather()
   return(inc)
 }

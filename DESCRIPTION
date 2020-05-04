@@ -1,10 +1,10 @@
 Package: last10kapi
 Type: Package
 Title: an API client for Last10k.com's free Company API
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: person("Brendan", "Sullivan", email = "bs3060@columbia.edu", role = c("aut", "cre"))
 Maintainer: Brendan Sullivan <bs3060@columbia.edu>
-Description: This allows users to pull a given company's SEC-reported financial data directly into R. Output is generally displayed in data frames, but some functions return corporate filing details verbatim from a given financial statement. These are more difficult to work with but are useful for individuals who need to look through filings in greater depth. Where data is available, functions will pull and display output; where it is not, functions will return an error or a blank data frame. Bear in mind the API has call limits of 5 per minute up to 500 per week.
+Description: This allows users to pull a given company's SEC-reported financial data directly into R. Be aware that the API has call limits of 5 per minute and up to 500 per week.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
